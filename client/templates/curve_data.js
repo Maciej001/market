@@ -13,6 +13,6 @@ Template.curveData.helpers({
 	},
 	today: function(){
 		var now = new Date();
-	    return moment(today).format("DD MMM YYYY");
+	    return moment(now).format("DD MMM YYYY");
 	}
 });
