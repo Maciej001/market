@@ -26,6 +26,8 @@ Meteor.startup(function(){
         holiday.push( new Date(2015+i, 11, 25) );
         holiday.push( new Date(2015+i, 11, 26) );
         
+        holiday.push(new Date(2015, 5, 30));
+        
         // Easter Monday
         var easter_date = easter(2015+i);
         holiday.push(new Date(2015+i, easter_date.month - 1, easter_date.day+1));
@@ -61,11 +63,15 @@ isLastDayOfMonth = function(day) {
     }
 }
 
-today = function(){
+today = function (){
     return new Date();
 }
 
-tPlusDate = function(date, offset) {
+spot = function(){
+    return tPlusDate(today(), 2);
+}
+
+tPlusDate = function (date, offset) {
     var i = 1;
     var futureDate = new Date(date); 
     while ( i <= offset){
@@ -102,7 +108,7 @@ mFDate = function(date) {
     return futureDate;
 }
 
-easter = function(Y) {
+function easter(Y) {
     var C = Math.floor(Y/100);
     var N = Y - 19*Math.floor(Y/19);
     var K = Math.floor((C - 17)/25);
