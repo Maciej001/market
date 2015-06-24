@@ -1,0 +1,20 @@
+<template name="curveData">
+  <div class="simple-curve">
+    <h4>HUF BUBOR 3M</h4> 
+    Today {{today}}
+    {{#if curveIsAvailable "HUF_BUBOR_3M"}}
+        <table class="table table-striped">
+            <tr>
+                {{#each curveBuckets "HUF_BUBOR_3M"}}
+                    {{> curveHeader}}
+                {{/each}}
+            </tr>
+            <tr>
+                {{#each curveBuckets "HUF_BUBOR_3M"}}
+                    {{> curvePrice }}
+                {{/each}}
+            </tr>
+        </table>
+    {{/if}}
+  </div>
+</template>
