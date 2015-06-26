@@ -20,8 +20,8 @@ var loadData = function(url){
 					buckets: {
 						name: 	results.data[0][i].replace(/ /g,''),
 						price: 	Number(results.data[1][i]),
-						start:	startDate(results.data[0][i].replace(/ /g,'')),
-						end: 	endDate(results.data[0][i].replace(/ /g,''))
+						start:	startDate(results.data[0][i]),
+						end: 	endDate(results.data[0][i])
 					}
 				} });
 			}
@@ -30,7 +30,7 @@ var loadData = function(url){
 }
 
 startDate = function(date) {
-	var check_date = date.replace(/ /g,'')
+	var check_date = date.replace(/ /g,'');
 	var start_date;
 	var todayDate = new Date();
 	
@@ -42,7 +42,7 @@ startDate = function(date) {
 	} else if (/\d+(m|M)[-]\d+(m|M)/.test(check_date)) { // if FRAs
 		// if double digit starting periiod eg. 12m-15m
 		
-		if (_.isNumber(check_date.charAt(1))) {
+		if ( /\d\d(m|M)[-]/.test(check_date) ) {
 			// double digit as starting date -> 12m
 			var start_month=Number(check_date.substring(0, 2));
 		} else {
@@ -57,7 +57,6 @@ startDate = function(date) {
 		start_date = mFDate(new Date(st_year, st_month, st_day));
 		
 	} else if (/\d+(y|Y)/.test( check_date.replace(/ /g,'') ) ) { // if year eg. 1y, 5y 
-		console.log('its a year');
 		var start_year = Number(check_date.substring(0, check_date.length-1 ));
 		start_date = spot;
 	}
@@ -66,7 +65,44 @@ startDate = function(date) {
 }
 
 endDate = function(date){
+	var check_date = date.replace(/ /g,'');
+	var end_date;
+	var todayDate = new Date();
 	
+	var spot = tPlusDate(todayDate, 2);
+	
+	// if date is 1M 3M 9m 
+	if (/\d+(m|M)/.test(check_date) && !/\d+(m|M)[-]\d+(m|M)/.test(check_date)){
+		var month = Number(check_date.substring(0, check_date.length - 1));
+		end_date = mFDate(new Date(spot.getFullYear(), spot.getMonth() + month, spot.getDate()));
+	} else if (/\d+(m|M)[-]\d+(m|M)/.test(check_date)) { // if FRAs
+		// if double digit starting periiod eg. 12m-15m
+		
+		if ( /[-]\d\d(m|M)/.test(check_date) ) {
+			// double digit as starting date -> 12m
+			var last_three = 	check_date.substr(check_date.length - 3);
+			var end_month = 	Number(last_three.substr(0, last_three.length -1));
+		} else {
+			// single digit at start 
+			var last_two = 		check_date.substr(check_date.length - 2);
+			var end_month =		Number(last_two.substr(0, last_two.length -1));
+		}
+		
+		var e_year = 	spot.getFullYear();
+		var e_month =	spot.getMonth() + end_month;
+		var e_day = 	spot.getDate();
+		
+		end_date = mFDate(new Date(e_year, e_month, e_day));
+		
+	} else if (/\d+(y|Y)/.test( check_date.replace(/ /g,'') ) ) { // if year eg. 1y, 5y 
+
+		var e_year = 	spot.getFullYear() + Number(check_date.substr(0, check_date.length - 1));
+		var e_month = 	spot.getMonth();
+		var e_day = 	spot.getDate();
+		end_date = mFDate(new Date(e_year, e_month, e_day));
+	}
+	
+	return end_date;	
 }
 
 
