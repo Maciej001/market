@@ -5,3 +5,5 @@ Meteor.publish('huf_bubor_3m', function(){
 Meteor.publish('curves', function(){
     return Curves.find();
 });
+
+

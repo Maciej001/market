@@ -10,20 +10,28 @@ Template.curve.events({
 var loadData = function(url){
 	Papa.parse(url, {
 		complete: function(results, file) {
-
-			var curveId = Curves.insert({
-				name: results.data[0][0]
-			});
+			var curveId, curve_row, prices_row;
+		
+			Meteor.call('removeAllCurves');
 			
-			for(var i=1; i<results.data[0].length; i++) {
-				Curves.update(curveId, { $push: {
-					buckets: {
-						name: 	results.data[0][i].replace(/ /g,''),
-						price: 	Number(results.data[1][i]),
-						start:	startDate(results.data[0][i]),
-						end: 	endDate(results.data[0][i])
-					}
-				} });
+			for(var j=0; j < results.data.length-1; j += 2) {
+				curve_row = j;
+				prices_row = j + 1;
+				
+				curveId = Curves.insert({
+					name: results.data[curve_row][0]
+				});	
+				
+				for(var i=1; i<results.data[curve_row].length; i++) {
+					Curves.update(curveId, { $push: {
+						buckets: {
+							name: 	results.data[curve_row][i].replace(/ /g,''),
+							price: 	Number(results.data[prices_row][i]),
+							start:	startDate(results.data[curve_row][i]),
+							end: 	endDate(results.data[curve_row][i])
+						}
+					} });
+				}
 			}
 		}, // complete ends
 	});
