@@ -5,7 +5,8 @@ Template.curveData.helpers({
         }
     }, 
     curveIsAvailable: function(curve){
-		if (Curves.find({ name: curve }).count()>0) {
+		if (Curves.find({ name: { $search: curve } }).count()>0) {
+			console.log('there are curves ', Curves.find({ $text: { $search: curve } }).count() );
 			return true;
 		} else {
 			return false;

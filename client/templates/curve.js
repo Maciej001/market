@@ -8,9 +8,11 @@ Template.curve.events({
 });
 
 var loadData = function(url){
+	var myCurrencies = ['PLN', 'HUF', 'CZK', 'TRY', 'ZAR'];
 	Papa.parse(url, {
 		complete: function(results, file) {
 			var curveId, curve_row, prices_row;
+			var currency = '';
 		
 			Meteor.call('removeAllCurves');
 			
@@ -18,8 +20,12 @@ var loadData = function(url){
 				curve_row = j;
 				prices_row = j + 1;
 				
+				// extracts curve currency from curve's name 
+				currency = whatCurrency(results.data[curve_row][0], myCurrencies);
+				
 				curveId = Curves.insert({
-					name: results.data[curve_row][0]
+					name: results.data[curve_row][0],
+					currency: currency
 				});	
 				
 				for(var i=1; i<results.data[curve_row].length; i++) {
@@ -36,6 +42,16 @@ var loadData = function(url){
 		}, // complete ends
 	});
 }
+
+whatCurrency = function(curve_name, myCurrencies){
+	var currency = ''
+	_.each(myCurrencies, function(curr) {
+		if (curve_name.indexOf(curr) !== -1) {
+			currency = curve_name.substring(curve_name.indexOf(curr), 3);
+		}
+	});
+	return currency;
+};
 
 startDate = function(date) {
 	var check_date = date.replace(/ /g,'');
