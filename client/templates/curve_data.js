@@ -5,8 +5,8 @@ Template.curveData.helpers({
         }
     }, 
     curveIsAvailable: function(curve){
-		if (Curves.find({ name: { $search: curve } }).count()>0) {
-			console.log('there are curves ', Curves.find({ $text: { $search: curve } }).count() );
+		if (Curves.find({ currency: curve }).count() > 0) {
+			console.log('there are curves ', curve );
 			return true;
 		} else {
 			return false;
@@ -16,4 +16,5 @@ Template.curveData.helpers({
 		var now = new Date();
 	    return moment(now).format("DD MMM YYYY");
 	}
+
 });

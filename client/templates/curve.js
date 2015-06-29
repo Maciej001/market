@@ -29,14 +29,17 @@ var loadData = function(url){
 				});	
 				
 				for(var i=1; i<results.data[curve_row].length; i++) {
-					Curves.update(curveId, { $push: {
-						buckets: {
-							name: 	results.data[curve_row][i].replace(/ /g,''),
-							price: 	Number(results.data[prices_row][i]),
-							start:	startDate(results.data[curve_row][i]),
-							end: 	endDate(results.data[curve_row][i])
-						}
-					} });
+					// if price field is not empty 
+					if(results.data[prices_row][i] !== '') {
+						Curves.update(curveId, { $push: {
+							buckets: {
+								name: 	results.data[curve_row][i].replace(/ /g,''),
+								price: 	Number(results.data[prices_row][i]),
+								start:	startDate(results.data[curve_row][i]),
+								end: 	endDate(results.data[curve_row][i])
+							}
+						} });
+					}
 				}
 			}
 		}, // complete ends

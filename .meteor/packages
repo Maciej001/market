@@ -10,3 +10,4 @@ iron:router
 twbs:bootstrap
 underscore
 momentjs:moment
+fourseven:scss
