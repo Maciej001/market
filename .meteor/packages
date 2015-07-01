@@ -11,3 +11,5 @@ twbs:bootstrap
 underscore
 momentjs:moment
 fourseven:scss
+accounts-password
+ian:accounts-ui-bootstrap-3

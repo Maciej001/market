@@ -1,3 +1,58 @@
 *, p, td, h1,h2,h3,h4,h5,h6, li {
     color: $dark-gray;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+html, body {
+    height: 100%;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.btn-yellow, .btn-red, .btn-green, .btn-blue {
+    color: white;
+    border: none;
+    opacity: 0.25;
+    transition: all 0.3s ease;
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.btn-blue {
+    background: $blue;
+    &:hover {
+        color: white;
+        background: $blue;
+    }
+};
+
+.btn-yellow {
+    background: $yellow;
+    &:hover {
+        color: white;
+        background: lighten($yellow, 6%);
+    }
+};
+
+.btn-red {
+    background: $red;
+    &:hover {
+        color: white;
+        background: lighten($red, 6%);
+    }
+};
+.btn-green {
+    background: $green;
+    &:hover {
+        color: white;
+        background: lighten($green, 6%);
+    }
+};
+
+.active-market, .active-currency {
+    opacity: 1;
 }

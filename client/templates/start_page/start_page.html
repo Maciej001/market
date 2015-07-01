@@ -1,0 +1,36 @@
+<template name="startPage">
+    
+    {{> startHeader}}
+
+	<div class="container-fluid">
+		<div class="container my-market">
+			<div class="row">
+				<div class="col-xs-6 which-currency">
+					<a class="btn btn-default btn-yellow currency active-currency" href="#" role="button">PLN</a>
+					<a class="btn btn-default btn-red currency" href="#" role="button">HUF</a>
+					<a class="btn btn-default btn-green currency" href="#" role="button">ZAR</a>
+				</div>
+			
+				<div class="col-xs-6 which-market">
+					<a class="btn btn-default btn-blue market active-market" href="#" role="button">SWAPS</a>
+					<a class="btn btn-default btn-blue market" href="#" role="button">BONDS</a>
+				</div>
+			</div>
+			
+			<div class="row market-overview">
+				<div class="col-xs-6">
+					{{> marketOverview}}
+				</div>
+			</div>
+		</div>
+	</div> <!-- jumbo container ends -->
+	
+	
+	<div class="main-footer">
+		<div class="container">
+			<h5><span class="glyphicon glyphicon-copyright-mark"></span> 2015 EEMEA Markets - built in London, UK</h5>
+		</div>
+	</div>
+
+
+</template>

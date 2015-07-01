@@ -23,7 +23,7 @@ var loadData = function(url){
 				// extracts curve currency from curve's name 
 				currency = whatCurrency(results.data[curve_row][0], myCurrencies);
 				
-				// if reading bonds 
+				// If reading Bonds 
 				if (results.data[curve_row][0] === 'HGB') {
 					curveId = Curves.insert({
 						name: 'HGB', 
@@ -31,8 +31,8 @@ var loadData = function(url){
 					});
 					
 					for(var i=1; i<results.data[curve_row].length; i++) {
-						isin_row = j + 1;
-						prices_row = j + 2;
+						var isin_row = j + 1;
+						var prices_row = j + 2;
 					
 						// if price field is not empty 
 						if(results.data[prices_row][i] !== '') {
@@ -51,7 +51,7 @@ var loadData = function(url){
 					
 					j += 1; // bond date are in 3 rows whereas curves data are in 2 only 
 					
-				} else { // when reading curves
+				} else { // When reading Curves
 					curveId = Curves.insert({
 						name: results.data[curve_row][0],
 						currency: currency
