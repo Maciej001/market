@@ -8,7 +8,7 @@ Template.curve.events({
 });
 
 var loadData = function(url){
-	var myCurrencies = ['PLN', 'HUF', 'CZK', 'TRY', 'ZAR'];
+	var myCurrencies = ['PLN', 'HUF', 'CZK', 'TRY', 'ZAR','EUR', 'USD'];
 	Papa.parse(url, {
 		complete: function(results, file) {
 			var curveId, curve_row, prices_row;
@@ -23,22 +23,54 @@ var loadData = function(url){
 				// extracts curve currency from curve's name 
 				currency = whatCurrency(results.data[curve_row][0], myCurrencies);
 				
-				curveId = Curves.insert({
-					name: results.data[curve_row][0],
-					currency: currency
-				});	
-				
-				for(var i=1; i<results.data[curve_row].length; i++) {
-					// if price field is not empty 
-					if(results.data[prices_row][i] !== '') {
-						Curves.update(curveId, { $push: {
-							buckets: {
-								name: 	results.data[curve_row][i].replace(/ /g,''),
-								price: 	Number(results.data[prices_row][i]),
-								start:	startDate(results.data[curve_row][i]),
-								end: 	endDate(results.data[curve_row][i])
-							}
-						} });
+				// if reading bonds 
+				if (results.data[curve_row][0] === 'HGB') {
+					curveId = Curves.insert({
+						name: 'HGB', 
+						currency: 'HUF'
+					});
+					
+					for(var i=1; i<results.data[curve_row].length; i++) {
+						isin_row = j + 1;
+						prices_row = j + 2;
+					
+						// if price field is not empty 
+						if(results.data[prices_row][i] !== '') {
+							Curves.update(curveId, { $push: {
+								buckets: {
+									name: 	results.data[curve_row][i].replace(/ /g,''),
+									isin: 	results.data[isin_row][i].replace(/ /g,''),
+									price: 	Number(results.data[prices_row][i]),
+									
+									
+								}
+							} });
+						}
+						
+					}
+					
+					j += 1; // bond date are in 3 rows whereas curves data are in 2 only 
+					
+				} else { // when reading curves
+					curveId = Curves.insert({
+						name: results.data[curve_row][0],
+						currency: currency
+					});	
+					
+					for(var i=1; i<results.data[curve_row].length; i++) {
+					
+						// if price field is not empty 
+						if(results.data[prices_row][i] !== '') {
+							Curves.update(curveId, { $push: {
+								buckets: {
+									name: 	results.data[curve_row][i].replace(/ /g,''),
+									price: 	Number(results.data[prices_row][i]),
+									start:	startDate(results.data[curve_row][i]),
+									end: 	endDate(results.data[curve_row][i])
+								}
+							} });
+						}
+						
 					}
 				}
 			}
