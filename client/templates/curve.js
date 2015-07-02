@@ -34,23 +34,23 @@ var loadData = function(url){
 					for(var i=1; i<results.data[curve_row].length; i++) {
 						var isin_row = j + 1;
 						var prices_row = j + 2;
-					
+						var maturity_row = j + 3;
+						
 						// if price field is not empty 
 						if(results.data[prices_row][i] !== '') {
 							Bonds.update(curveId, { $push: {
 								buckets: {
-									name: 	results.data[curve_row][i].replace(/ /g,''),
-									isin: 	results.data[isin_row][i].replace(/ /g,''),
-									price: 	Number(results.data[prices_row][i]),
-									
-									
+									name: 		results.data[curve_row][i].replace(/ /g,''),
+									isin: 		results.data[isin_row][i].replace(/ /g,''),
+									price: 		Number(results.data[prices_row][i]),
+									maturity: 	results.data[maturity_row][i]
 								}
 							} });
 						}
 						
 					}
 					
-					j += 1; // bond date are in 3 rows whereas curves data are in 2 only 
+					j += 2; // bond date are in 4 rows whereas curves data are in 2 only 
 					
 				} else { // When reading Curves
 					curveId = Curves.insert({

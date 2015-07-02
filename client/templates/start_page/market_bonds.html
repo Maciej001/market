@@ -1,3 +1,8 @@
 <template name='marketBonds'>
-    Bonds
+    <table class="bonds-listing">
+        <h4>{{bonds.name}}s</h4>
+        {{#each bonds.buckets}}
+            {{> bondItem }}
+        {{/each}}
+    </table>
 </template>

@@ -17,10 +17,6 @@ Template.startPage.helpers({
         var curr = Session.get('currency');
         return Curves.find({ currency: curr });
     },
-    bonds: function(){
-        var curr = Session.get('currency');
-        return Bonds.find({ currency: curr });
-    }, 
     marketForBonds: function(){
         forBonds = Session.get('market');
         if (forBonds === 'BONDS')
@@ -30,13 +26,6 @@ Template.startPage.helpers({
     }
 });
 
-Template.startPage.onRendered(function(){
-   var currency = Session.get('currency');
-   var market   = Session.get('market');
-   
-   $('.currency:contains(currency)').addClass('active-currency');
-   $('.market:contains(market)').addClass('active-market');
-});
 
 
 
