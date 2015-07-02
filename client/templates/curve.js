@@ -15,6 +15,7 @@ var loadData = function(url){
 			var currency = '';
 		
 			Meteor.call('removeAllCurves');
+			Meteor.call('removeAllBonds');
 			
 			for(var j=0; j < results.data.length-1; j += 2) {
 				curve_row = j;
@@ -25,7 +26,7 @@ var loadData = function(url){
 				
 				// If reading Bonds 
 				if (results.data[curve_row][0] === 'HGB') {
-					curveId = Curves.insert({
+					curveId = Bonds.insert({
 						name: 'HGB', 
 						currency: 'HUF'
 					});
@@ -36,7 +37,7 @@ var loadData = function(url){
 					
 						// if price field is not empty 
 						if(results.data[prices_row][i] !== '') {
-							Curves.update(curveId, { $push: {
+							Bonds.update(curveId, { $push: {
 								buckets: {
 									name: 	results.data[curve_row][i].replace(/ /g,''),
 									isin: 	results.data[isin_row][i].replace(/ /g,''),

@@ -6,8 +6,8 @@
 		<div class="container my-market">
 			<div class="row">
 				<div class="col-xs-6 which-currency">
-					<a class="btn btn-default btn-yellow currency active-currency" href="#" role="button">PLN</a>
-					<a class="btn btn-default btn-red currency" href="#" role="button">HUF</a>
+					<a class="btn btn-default btn-yellow currency" href="#" role="button">PLN</a>
+					<a class="btn btn-default btn-red currency active-currency" href="#" role="button">HUF</a>
 					<a class="btn btn-default btn-green currency" href="#" role="button">ZAR</a>
 				</div>
 			
@@ -19,7 +19,11 @@
 			
 			<div class="row market-overview">
 				<div class="col-xs-6">
-					{{> marketOverview}}
+					{{#if marketForBonds }}
+						{{> marketBonds}}
+					{{else}}
+						{{> marketSwaps }}
+					{{/if}}
 				</div>
 			</div>
 		</div>

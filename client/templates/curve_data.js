@@ -6,7 +6,6 @@ Template.curveData.helpers({
     }, 
     curveIsAvailable: function(curve){
 		if (Curves.find({ currency: curve }).count() > 0) {
-			console.log('there are curves ', curve );
 			return true;
 		} else {
 			return false;
