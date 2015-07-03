@@ -1,5 +1,5 @@
 Template.bondChart.onRendered(function(){
-    var curve = Curves.findOne({name: 'HUF_BUBOR_3M'});
+    var curve = Bonds.findOne({name: 'HGB'});
     var crvData = _.map(curve.buckets, function(bucket) {
         return bucket
     });
@@ -13,7 +13,13 @@ Template.bondChart.onRendered(function(){
         background: '#f5f5f5',
         barOuterPad: 0.2,
         barPad: 0.1
-    }
+    };
+    
+    var colors = d3.scale.linear()
+        .domain([0,  d3.max(_.map(crvData, function(item) {return item.price}))])
+        .range(["#FFB832", "#C61C6F"]);
+        
+    console.log('my color scale ', colors);
     
     var yScale = d3.scale.linear()
             .domain([0, d3.max(_.map(crvData, function(item) {return item.price}))]) // domain is the original range
@@ -31,7 +37,7 @@ Template.bondChart.onRendered(function(){
         .data(crvData)
         .enter()
         .append('rect')
-            .style('fill', '#c61c6f')
+            .style('fill', colors)
             .attr('width', xScale.rangeBand() )
             .attr('height', function(d){
                 return yScale(d.price);
