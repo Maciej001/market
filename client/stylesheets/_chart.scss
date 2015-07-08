@@ -1,0 +1,31 @@
+path {
+    stroke: $blue;
+    stroke-width: 2px;
+    fill: none;
+}
+
+.axis path, 
+.axis line {
+    fill: none;
+    stroke: $red;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+}
+
+#chart, #chart2 {
+    position: relative;
+    background: $vlOrange;
+    margin-bottom: 10px;
+}
+
+.tooltip {
+    position: absolute;
+    color: black;
+    background: white;
+    padding: 10px;
+    opacity: 0.9;
+}
+
+.tooltip-on {
+    opacity: 0.9;
+}
