@@ -11,120 +11,40 @@ Template.bondChart.onRendered(function(){
         return bucket;
     });
     
-    crvData.length = curve.buckets.length;
+    ///////////////////////////////////////////////////////////////////////////
+    ///////////        REGRESSION       
+    ///////////////////////////////////////////////////////////////////////////
     
-    var margin = { top: 30, right: 20, bottom: 30, left: 50 };
+    // var data = _.map(curve.buckets, function(bucket,i){
+    //     return [ i, bucket.price ]; 
+    // });
+    // var result = regression('polynomial', data, 4);
+    // console.log('data ', data);
+    // console.log('result ', result);
     
-    var myChart =   {
-                        height:     400 - margin.top - margin.bottom,
-                        width:      600 - margin.right - margin.left,
-                        barWidth:   20,
-                        barOffset:  5,
-                        background: lOrange,
-                        barOuterPad: 0.2,
-                        barPad: 0.1, 
-                    };
-                    
-    var tooltip = d3.select('#chart').append('div')
-        .classed('tooltip', true)
-        .classed('tooltip-on', false);
-    
-    var myColors = d3.scale.linear()
-        .domain([0, d3.max(_.map(crvData, function(d) {return d.price}))] )
-        .range([cOrange, cPink]);
-    
-    var yScale = d3.scale.linear()
-            .domain([0, d3.max(_.map(crvData, function(d) {return d.price}))]) 
-            .range([0, myChart.height]);
-            
-    var xScale = d3.scale.ordinal()
-            .domain(d3.range(0, crvData.length))
-            .rangeRoundBands([0, myChart.width ], myChart.barPad, myChart.barOuterPad);
-    
-    d3.select('#chart')
-        .append('svg')
-            .attr('width', myChart.width + margin.right + margin.left)
-            .attr('height', myChart.height + margin.top + margin.bottom)
-        .append('g')
-            .attr('transform', 'translate( ' +margin.left + ',' + margin.top + ')')
-        .selectAll('cicle')
-            .data(crvData)
-            .enter()
-        .append('circle')
-            .style('fill', function(d) { return myColors(d.price) })
-            .attr('r', 5)
-            .attr('cx', function(d,i) { return xScale(i); })
-            .attr('cy', function(d){ return (myChart.height - yScale(d.price)); })
-            .on('mouseover', function(d){
-                tooltip.transition()
-                    .classed('tooltip-on', true);
-                
-                tooltip.html(d.name + ' ' + d.price)
-                    .style('left',  (d3.event.pageX + 10) + 'px')
-                    .style('top',   (d3.event.pageY - 20) + 'px');
-                    
-                d3.select(this)
-                    .style('opacity', 0.5);
-            })
-            .on('mouseout', function(d){
-                d3.select(this)
-                    .style('opacity', 1);
-            });
-            
-        // Vertical axis
-        var yGuideScale = d3.scale.linear()
-            .domain([0, d3.max(_.map(crvData, function(item) {return item.price}))])
-            .range([myChart.height, 0]);
-    
-        var yAxis = d3.svg.axis()
-            .scale(yGuideScale)
-            .orient('left')
-            .ticks(8);
-            
-        var yGuide = d3.select('svg').append('g');
-            
-        yAxis(yGuide);
-        
-        yGuide.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-        
-        yGuide.selectAll('path')
-            .style({ fill: 'none', stroke: '#000'});
-            
-        yGuide.selectAll('line')
-            .style({ stroke: '#000'});
-            
-            
-        // Horizontal axis
-        var xAxis = d3.svg.axis()
-            .scale(xScale)
-            .orient('bottom')
-            .tickValues(xScale.domain());
-        
-        var xGuide = d3.select('svg').append('g')
-        xAxis(xGuide); 
-        
-        xGuide.attr('transform', 'translate(' + margin.left + ', ' + (myChart.height + margin.top ) + ')');
-        xGuide.selectAll('path')
-            .style({ fill: 'none', stroke: '#000'})
-        xGuide.selectAll('line')
-            .style({ stroke: '#000'});
-            
-            
-            
-    //////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////
-    // CHART 2
-    
+    // crvData = _.map(result.points, function(p){
+    //     return {
+    //         maturity: p[0],
+    //         price:    p[1]
+    //     }
+    // })
+    // Set options
     var options = {
-        element:     '#chart2',
-        margin:     margin,
-        width:      600,
-        height:     400,
-        interpolation: 'basis'
+        element:        '#chart',
+        margin:         { top: 30, right: 20, bottom: 30, left: 50 },
+        width:          600,
+        height:         400,
+        interpolation: 'basis',
+        colorScale:     [cOrange, cPink]
     };
     
 
     var simpleLineChart = function(mktData, options) {
+        
+        var myColors = d3.scale.linear()
+                        .domain(d3.extent(mktData, function(d) {return d.price}))
+                        .range(options.colorScale);
+        
         var width = options.width - options.margin.left - options.margin.right,
             height = options.height - options.margin.top - options.margin.bottom;
             
@@ -149,14 +69,14 @@ Template.bondChart.onRendered(function(){
                             .x(function(d){ return x(d.maturity); })
                             .y(function(d){ return y(d.price); });
                             
-                            
         var svg = d3.select(options.element)
                     .append('svg')
                         .attr('width', options.width + options.margin.left + options.margin.right)
                         .attr('height', options.height + options.margin.top + options.margin.bottom)
                     .append('g')
                         .attr('transform', 'translate(' + options.margin.left + ', ' + options.margin.top + ')')
-                    .data(mktData);
+                    
+                    
                     
         svg.append("path")
             .attr("d", valueline(mktData));
@@ -166,6 +86,17 @@ Template.bondChart.onRendered(function(){
             .attr('transform', 'translate(0, ' + options.height + ')')
             .call(xAxis);
             
+        svg.append('g')
+            // .attr('transform', 'translate( ' + options.margin.left + ',' + options.margin.top + ')')
+            .selectAll('cicle')
+                .data(mktData)
+                .enter()
+            .append('circle')
+                .style('fill', function(d) { return myColors(d.price) })
+                .attr('r', 5)
+                .attr('cx', function(d) { return x(d.maturity); })
+                .attr('cy', function(d){ return y(d.price); })
+                
     }; // end of function
     
     
