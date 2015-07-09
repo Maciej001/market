@@ -11,23 +11,6 @@ Template.bondChart.onRendered(function(){
         return bucket;
     });
     
-    ///////////////////////////////////////////////////////////////////////////
-    ///////////        REGRESSION       
-    ///////////////////////////////////////////////////////////////////////////
-    
-    // var data = _.map(curve.buckets, function(bucket,i){
-    //     return [ i, bucket.price ]; 
-    // });
-    // var result = regression('polynomial', data, 4);
-    // console.log('data ', data);
-    // console.log('result ', result);
-    
-    // crvData = _.map(result.points, function(p){
-    //     return {
-    //         maturity: p[0],
-    //         price:    p[1]
-    //     }
-    // })
     // Set options
     var options = {
         element:        '#chart',
@@ -41,20 +24,51 @@ Template.bondChart.onRendered(function(){
 
     var simpleLineChart = function(mktData, options) {
         
+        // map maturities to the range [0,1]
+        // myData is used for drawing a chart, whereas original mktData is used for xAxes to display dates
+        var myData = _.map(mktData, function(d) {
+            var start_end_date = d3.extent(mktData, function(d) {return d.maturity});
+            
+            var start_date = start_end_date[0];
+            var last_date  = start_end_date[1];
+            
+            return {
+                maturity:   (d.maturity - start_date)/(last_date-start_date),
+                price:      d.price
+            }
+        })
+        
+        var dataTable = _.map(myData, function(d){
+                                return [ d.maturity, d.price ]; 
+                            });
+        
+        var result = regression('polynomial', dataTable, 4);
+        
+        var regressedData = _.map(result.points, function(p){
+                                return {
+                                    maturity: p[0],
+                                    price:    p[1]
+                                }
+        });
+        
         var myColors = d3.scale.linear()
                         .domain(d3.extent(mktData, function(d) {return d.price}))
                         .range(options.colorScale);
         
-        var width = options.width - options.margin.left - options.margin.right,
-            height = options.height - options.margin.top - options.margin.bottom;
+        var width   = options.width - options.margin.left - options.margin.right,
+            height  = options.height - options.margin.top - options.margin.bottom;
             
         var x = d3.time.scale()
                     .domain(d3.extent(mktData, function(d){ return d.maturity; }))
                     .range([0, width]);
                     
+        var x_maturity = d3.scale.linear()
+                            .domain([d3.min(myData, function(d){ return d.maturity; }), d3.max(myData, function(d){ return d.maturity; })])
+                            .range([0, width]);
+                    
         var y = d3.scale.linear()
                     .domain([0, d3.max(mktData, function(d){ return d.price; })])
-                    .range([height, 0]);
+                    .range([height + options.margin.top + options.margin.bottom, 0]);
             
         var xAxis = d3.svg.axis().scale(x)
                         .orient('bottom')
@@ -62,11 +76,11 @@ Template.bondChart.onRendered(function(){
                         
         var yAxis = d3.svg.axis().scale(y)
                         .orient('left')
-                        .ticks();
+                        .ticks(5);
                         
         var valueline = d3.svg.line()
                             .interpolate(options.interpolation)
-                            .x(function(d){ return x(d.maturity); })
+                            .x(function(d){ return x_maturity(d.maturity); })
                             .y(function(d){ return y(d.price); });
                             
         var svg = d3.select(options.element)
@@ -74,27 +88,32 @@ Template.bondChart.onRendered(function(){
                         .attr('width', options.width + options.margin.left + options.margin.right)
                         .attr('height', options.height + options.margin.top + options.margin.bottom)
                     .append('g')
+                        // set new (0, 0) for drawings that will come
                         .attr('transform', 'translate(' + options.margin.left + ', ' + options.margin.top + ')')
                     
                     
                     
         svg.append("path")
-            .attr("d", valueline(mktData));
+            .attr("d", valueline(regressedData));
             
         svg.append('g')
             .attr('class', 'x axis')
-            .attr('transform', 'translate(0, ' + options.height + ')')
-            .call(xAxis);
+            .attr('transform', 'translate(0,' + options.height + ')')
+            .call(xAxis)
             
+        svg.append('g')
+            .attr('class', 'y axis')
+            .call(yAxis)
+        
         svg.append('g')
             // .attr('transform', 'translate( ' + options.margin.left + ',' + options.margin.top + ')')
             .selectAll('cicle')
-                .data(mktData)
+                .data(myData)
                 .enter()
             .append('circle')
                 .style('fill', function(d) { return myColors(d.price) })
                 .attr('r', 5)
-                .attr('cx', function(d) { return x(d.maturity); })
+                .attr('cx', function(d) { return x_maturity(d.maturity); })
                 .attr('cy', function(d){ return y(d.price); })
                 
     }; // end of function
