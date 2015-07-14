@@ -1,0 +1,12 @@
+<template name="MarketOverview">
+  <div class="row market-overview">
+    <div class="col-xs-6">
+      {{#if marketForBonds }}
+      dupa
+        {{> marketBonds}}
+      {{else}}
+        {{> marketSwaps }}
+      {{/if}}
+    </div>
+  </div>
+</template>
