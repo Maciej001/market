@@ -14,7 +14,15 @@ path {
 
 #chart {
     position: relative;
-    background: $vlOrange;
+}
+
+#chart svg {
+  background: $vlOrange;
+}
+
+#chart text.chart-title {
+  color: $orange;
+  font-weight: bold;
 }
 
 .tooltip {
@@ -27,4 +35,14 @@ path {
 
 .tooltip-on {
     opacity: 0.9;
+}
+
+/* Grid lines  */
+.grid .tick line {
+  stroke: $orange;
+  opacity: 0.3;
+}
+
+.grid path {
+  stroke-width: 0;
 }

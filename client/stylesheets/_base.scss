@@ -36,9 +36,14 @@ html, body {
 
 .btn-yellow {
     background: $yellow;
+    opacity: 1;
     &:hover {
         color: white;
         background: lighten($yellow, 6%);
+    }
+    &:visited, &:active, &:focus {
+      background: $yellow;
+      color: white;
     }
 };
 
@@ -59,4 +64,8 @@ html, body {
 
 .active-market, .active-currency {
     opacity: 1;
+}
+
+.header-inline {
+  display: inline-block;
 }

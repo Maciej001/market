@@ -1,0 +1,23 @@
+<template name="bondsMarketsItem">
+ 
+	<tr>	
+		<!-- Name -->
+		<td>{{ curve }}</td>
+
+		<!-- Price -->
+		<td>{{ currency }}</td>
+
+		<!-- Actions -->
+		<td>
+      <a href="{{pathFor route='instruments.edit'}}">
+        <button type="button" class="btn btn-warning btn-xs edit-market">
+          Edit
+        </button>
+      </a>            
+      
+      <button type="button" class="btn btn-danger btn-xs delete-market">Delete</button>
+		</td>
+		
+	</tr>
+  
+</template>

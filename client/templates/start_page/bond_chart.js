@@ -1,4 +1,11 @@
 Template.bondChart.onRendered(function(){
+  
+    var dane = d3.csv("bond_data.csv", function(error, data){
+      data.forEach(function(d){
+
+      });
+    });
+  
     var cPink = '#c61c6f',
         cOrange ='#ffb832',
         lOrange = '#FFDABD',
@@ -12,17 +19,19 @@ Template.bondChart.onRendered(function(){
     });
     
     // Set options
-    var options = {
+    options = {
         element:        '#chart',
-        margin:         { top: 30, right: 20, bottom: 30, left: 50 },
+        margin:         { top: 60, right: 0, bottom: 30, left: 50 },
         width:          600,
         height:         400,
         interpolation: 'basis',
-        colorScale:     [cOrange, cPink]
+        colorScale:     [cOrange, cPink],
+        chartTitle:     'Hungarian Bonds',
+        xAxisTicks:     20,
+        yAxisTicks:     10
     };
     
-
-    var simpleLineChart = function(mktData, options) {
+    simpleLineChart = function(mktData, options) {
         
         // map maturities to the range [0,1]
         // myData is used for drawing a chart, whereas original mktData is used for xAxes to display dates
@@ -72,11 +81,11 @@ Template.bondChart.onRendered(function(){
             
         var xAxis = d3.svg.axis().scale(x)
                         .orient('bottom')
-                        .ticks(5);
+                        .ticks(options.xAxisTicks );
                         
         var yAxis = d3.svg.axis().scale(y)
                         .orient('left')
-                        .ticks(5);
+                        .ticks(options.yAxisTicks);
                         
         var valueline = d3.svg.line()
                             .interpolate(options.interpolation)
@@ -91,8 +100,6 @@ Template.bondChart.onRendered(function(){
                         // set new (0, 0) for drawings that will come
                         .attr('transform', 'translate(' + options.margin.left + ', ' + options.margin.top + ')')
                     
-                    
-                    
         svg.append("path")
             .attr("d", valueline(regressedData));
             
@@ -106,7 +113,6 @@ Template.bondChart.onRendered(function(){
             .call(yAxis)
         
         svg.append('g')
-            // .attr('transform', 'translate( ' + options.margin.left + ',' + options.margin.top + ')')
             .selectAll('cicle')
                 .data(myData)
                 .enter()
@@ -116,7 +122,46 @@ Template.bondChart.onRendered(function(){
                 .attr('cx', function(d) { return x_maturity(d.maturity); })
                 .attr('cy', function(d){ return y(d.price); })
                 
+        // Chart Title
+        svg.append('text')
+          .attr('x', (width/2))
+          .attr('class', 'chart-title')
+          .attr('y', ( 0 - options.margin.top/2 ))
+          .attr('text-anchor', 'middle')
+          .text(options.chartTitle)
+        
+        // Gridlines - add two additional axes with stroke-width:0, but ticks spreading width and 
+        // height of the chart.
+        svg.append('g')
+          .attr('class', 'grid')
+          .attr('transform', 'translate(0, ' + options.height + ')')
+          .call(make_x_axis(x)
+                  .tickSize(-options.height)
+                  .tickFormat('')
+            )
+        
+        svg.append('g')
+          .attr('class', 'grid')
+          .call(make_y_axis(y)
+                  .tickSize( - width, 0, 0)
+                  .tickFormat('')
+           )
+        
     }; // end of function
+  
+    var make_x_axis = function(x){
+      return d3.svg.axis()
+                .scale(x)
+                .orient('bottom')
+                .ticks(options.xAxisTicks)
+    };
+    
+    var make_y_axis = function(y){
+      return d3.svg.axis()
+        .scale(y)
+        .orient('left')
+        .ticks(options.yAxisTicks)
+    };
     
     
     simpleLineChart(crvData,  options);
