@@ -1,9 +1,19 @@
 <template name="BondsMarketsList">
   <div class="container">
     <div class="row">
-      <h4 class="table-header">Bonds Markets</h4>
-      <a href="#"><button type="button" class="btn btn-success btn-xs edit-market">Add Bonds Market</button></a>
+      <div class="col-xs-12">
+        <h4 class="table-header">Bonds Markets</h4>
+        <a href="#"><button type="button" class="btn btn-success btn-xs add-bond-market">Add Bonds Market</button></a>
+      </div>
     </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4" id="new-bond-market-form">
+        {{#if addBondToMarket}}
+          {{> NewBondMarketForm }}
+        {{/if}}
+      </div>
+    </div>
+    
   </div>
 
   <table class='table all-bonds-market'>
