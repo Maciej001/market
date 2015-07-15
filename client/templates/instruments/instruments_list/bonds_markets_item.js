@@ -11,20 +11,24 @@ Template.BondsMarketsItem.events({
     BondsMarkets.remove(this._id);
   },
   'keypress input': function(e){
-    // if enter was pressed
-    if (e.which === 13) {
-      var field = 'curve';
+    var event = e;
+    var keyCode = e.keyCode || e.which; 
+    
+    console.log('klawisz ', e.which, ' ', e.keyCode);
+    if ((keyCode === 13) || (keyCode === 9)) {
       e.preventDefault()
-      if ($(e.target).attr('type') === 'currency') {
-        field = 'currency'
-      }
       
       var market = {
-        key:      field,
-        value:    String($(e.target).val())
+        id: this._id,
+        curve:      String($(e.target).closest('form').find('[type=curve]').val()),
+        currency:    String($(e.target).closest('form').find('[type=currency]').val())
       }
-      debugger;
-      Meteor.call('updateBondsMarketsItem', market);
+
+      Meteor.call('updateBondsMarketsItem', market, function(err,r){
+        $(event.target).blur();
+      });
     }
+    
+    
   }
 });

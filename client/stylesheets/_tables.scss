@@ -26,11 +26,21 @@ td.bucket-price {
     padding: 5px 10px;
     text-align: right;
 }
-
-.all-bonds-market td input {
-  max-width: 100px;
-  border: none;
-  &:nth-child(even) {
-    border: $vl-blue;
+.all-bonds-market {
+    margin-top: 20px;
+}
+.all-bonds-market tr {
+  border-bottom: 1px solid $light-blue;
+  
+  td {
+      padding: 5px 10px;
   }
+  
+  input {
+      max-width: 100px;
+      border: none;
+      outline: none;
+  }
+  
+
 }
