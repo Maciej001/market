@@ -1,4 +1,4 @@
-Templates.MarketOverview.helpers({
+Template.MarketOverview.helpers({
   marketForBonds: function(){
     forBonds = Session.get('market');
     if (forBonds === 'BONDS')

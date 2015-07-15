@@ -1,29 +1,5 @@
-<template name="StartPageLayout">
-    
+<template name="StartPageLayout">   
   {{> yield "header" }}
-
-	<div class="container-fluid">
-		<div class="container my-market">
-			<div class="row">
-				<div class="col-xs-6 which-currency">
-					<a class="btn btn-default btn-yellow currency" href="#" role="button">PLN</a>
-					<a class="btn btn-default btn-red currency active-currency" href="#" role="button">HUF</a>
-					<a class="btn btn-default btn-green currency" href="#" role="button">ZAR</a>
-				</div>
-			
-				<div class="col-xs-6 which-market">
-					<a class="btn btn-default btn-blue market active-market" href="#" role="button">SWAPS</a>
-					<a class="btn btn-default btn-blue market" href="#" role="button">BONDS</a>
-				</div>
-			</div>
-	    
-      {{> yield "content"}}
-      
-		</div>
-	</div> <!-- jumbo container ends -->
-	
-	
+  {{> yield "content"}}
 	{{> yield "footer" }}
-
-
 </template>

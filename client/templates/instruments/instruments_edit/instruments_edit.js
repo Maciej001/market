@@ -1,3 +1,0 @@
-Template.instrumentsEdit.helpers({
-  
-});
