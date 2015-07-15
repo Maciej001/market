@@ -8,7 +8,12 @@ Template.NewBondMarketForm.events({
 		};
 
 		Meteor.call('insertBondsMarketsItem', market, function(error, result) {
-			Session.set('addBondToMarket', false);
+		    if (error) {
+		        console.log(error);
+		    } else {
+    			Session.set('addBondToMarket', false);
+    			console.log('result', result);
+		    }
 		});
 	}, 
     'click button[type=cancel]': function(){
