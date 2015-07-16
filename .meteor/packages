@@ -7,10 +7,10 @@
 meteor-platform
 harrison:papa-parse
 iron:router
-twbs:bootstrap
 underscore
 momentjs:moment
 fourseven:scss
 accounts-password
-ian:accounts-ui-bootstrap-3
 d3js:d3
+materialize:materialize
+useraccounts:materialize

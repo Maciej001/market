@@ -1,24 +1,17 @@
 <template name="Header">
-	
-	<nav class="navbar navbar-default" id="main-header">
-	  <div class="container">
 
-	    <div class="navbar-header">
-	      <a class="navbar-brand" href="/">
-					Markets
-	      </a>
-	    </div>
-
-	    <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="{{pathFor route='instruments.list'}}">Instruments</a>
-          </li>
-          {{> loginButtons}}
-        </ul>
-	    </div>
-
-	  </div> <!-- container-fluid -->
-	</nav>
+	  <nav>
+	  	<div class="container">
+		    
+		    <div class="nav-wrapper">
+		      <a href="#" class="brand-logo">Markets</a>
+		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		        <li><a href="sass.html">Instruments</a></li>
+		        <li><a href="badges.html">Login</a></li>
+		      </ul>
+		    </div>
+		    
+	    </div> <!-- conainer ends -->
+	  </nav>
 
 </template>

@@ -1,29 +1,34 @@
 <template name="MarketOverview">
-  <div class="container-fluid">
-		<div class="container my-market">
-			<div class="row">
-				<div class="col-xs-6 which-currency">
-					<a class="btn btn-default btn-yellow currency" href="#" role="button">PLN</a>
-					<a class="btn btn-default btn-red currency active-currency" href="#" role="button">HUF</a>
-					<a class="btn btn-default btn-green currency" href="#" role="button">ZAR</a>
-				</div>
+  
+	<div class="container my-market">
+		<div class="row">
 			
-				<div class="col-xs-6 which-market">
-					<a class="btn btn-default btn-blue market active-market" href="#" role="button">SWAPS</a>
-					<a class="btn btn-default btn-blue market" href="#" role="button">BONDS</a>
-				</div>
+			<div class="col s6 which-currency">
+				<a class="btn btn-default btn-yellow currency" href="#" role="button">PLN</a>
+				<a class="btn btn-default btn-red currency active-currency" href="#" role="button">HUF</a>
+				<a class="btn btn-default btn-green currency" href="#" role="button">ZAR</a>
 			</div>
-      
-		</div>
-	</div> <!-- jumbo container ends -->
+		
+			<div class="col s6 which-market">
+				<a class="btn btn-default btn-blue market active-market" href="#" role="button">SWAPS</a>
+				<a class="btn btn-default btn-blue market" href="#" role="button">BONDS</a>
+			</div>
+	
+		</div> <!-- row ends -->
+	</div> <!-- container ends -->
+	
   
   <div class="row market-overview">
-    <div class="col-xs-6">
-      {{#if marketForBonds }}
-        {{> marketBonds}}
-      {{else}}
-        {{> marketSwaps }}
-      {{/if}}
+    
+    <div class="col s6">
+    	ala
+      <!--{{#if marketForBonds }}-->
+      <!--  {{> marketBonds}}-->
+      <!--{{else}}-->
+      <!--  {{> marketSwaps }}-->
+      <!--{{/if}}-->
     </div>
-  </div>
+    
+  </div> <!-- row ends -->
+  
 </template>
