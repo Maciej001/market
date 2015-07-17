@@ -1,12 +1,11 @@
 Template.newBondMarketForm.events({
     'submit form': function(e){
 		e.preventDefault();
-
 		var market = {
-			curve: 	    String($(e.target).find('input[type=curve]').val()).toUpperCase(),
-			currency: 	String($(e.target).find('input[type=currency]').val()).toUpperCase()
+			curve: 	    String($(e.target).find('#bondCurveName').val()).toUpperCase(),
+			currency: 	String($(e.target).find('#bondCurveCurr').val()).toUpperCase()
 		};
-
+		
 		Meteor.call('insertBondsMarketsItem', market, function(error, result) {
 		    if (error) {
 		        console.log(error);
@@ -16,7 +15,8 @@ Template.newBondMarketForm.events({
 		    }
 		});
 	}, 
-    'click button[type=cancel]': function(){
+    'click button[type=cancel]': function(e){
+    	e.preventDefault();
         Session.set('addBondToMarket',false);
     }
     

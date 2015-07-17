@@ -14,3 +14,5 @@ accounts-password
 d3js:d3
 materialize:materialize
 useraccounts:materialize
+aldeed:simple-schema
+aldeed:collection2
