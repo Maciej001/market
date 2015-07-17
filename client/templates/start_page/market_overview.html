@@ -4,14 +4,14 @@
 		<div class="row">
 			
 			<div class="col s6 which-currency">
-				<a class="btn btn-default btn-yellow currency" href="#" role="button">PLN</a>
-				<a class="btn btn-default btn-red currency active-currency" href="#" role="button">HUF</a>
-				<a class="btn btn-default btn-green currency" href="#" role="button">ZAR</a>
+				<a class="btn currency" href="#" role="button">PLN</a>
+				<a class="btn currency active-currency" href="#" role="button">HUF</a>
+				<a class="btn currency" href="#" role="button">ZAR</a>
 			</div>
 		
 			<div class="col s6 which-market">
-				<a class="btn btn-default btn-blue market active-market" href="#" role="button">SWAPS</a>
-				<a class="btn btn-default btn-blue market" href="#" role="button">BONDS</a>
+				<a class="btn market active-market" href="#" role="button">SWAPS</a>
+				<a class="btn market" href="#" role="button">BONDS</a>
 			</div>
 	
 		</div> <!-- row ends -->
@@ -21,12 +21,11 @@
   <div class="row market-overview">
     
     <div class="col s6">
-    	ala
-      <!--{{#if marketForBonds }}-->
-      <!--  {{> marketBonds}}-->
-      <!--{{else}}-->
-      <!--  {{> marketSwaps }}-->
-      <!--{{/if}}-->
+      {{#if marketForBonds }}
+        {{> marketBonds}}
+      {{else}}
+        {{> marketSwaps }}
+      {{/if}}
     </div>
     
   </div> <!-- row ends -->

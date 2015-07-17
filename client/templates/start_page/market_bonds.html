@@ -1,17 +1,17 @@
 <template name='marketBonds'>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-4">
-                <table class="bonds-listing">
-                    <h4>{{bonds.name}}s</h4>
-                    {{#each bonds.buckets}}
-                        {{> bondItem }}
-                    {{/each}}
-                </table>
-            </div>
-            <div class="col-xs-8">
-                {{> bondChart }}
-            </div>
+    
+    <div class="row">
+        <div class="col s4">
+            <table class="bonds-listing">
+                <h4>{{bonds.name}}s</h4>
+                {{#each bonds.buckets}}
+                    {{> bondItem }}
+                {{/each}}
+            </table>
+        </div>
+        <div class="col s8">
+            {{> bondChart }}
         </div>
     </div>
+    
 </template>

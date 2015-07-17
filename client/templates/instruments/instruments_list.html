@@ -1,29 +1,30 @@
 <template name="instruments">
   
-  {{> startHeader}}
+  <div class="container">
   
-  <div class="container-fluid">
-    <div class="container">
+  
       <div class="row">
-        <div class="col-xs-12 load-buttons-area">
-
-          <a href="#"><button type="button" class="btn btn-default btn-yellow">Load Bonds</button></a>
-          <a href="#"><button type="button" class="btn btn-default btn-yellow">Load Curves</button></a>
-
+        
+        <div class="col s12 load-buttons-area">
+          <a href="#"><button type="button" class="btn">Load Bonds</button></a>
+          <a href="#"><button type="button" class="btn">Load Curves</button></a>
         </div>
-      </div> <!-- row  -->
-    </div> <!-- container -->
-    
-    <div class="container">
+
+      </div> <!-- row ends -->
+
+
       <div class="row">
-        <div class="col-xs-12 col-sm-6">
+        
+        <div class="col s12 m6">
           {{> bondsMarketsList }}
         </div>
-        <div class="col-xs-12 col-sm-6">
+        <div class="col s12 m6">
           {{> curvesList }}
         </div>
-      </div>
-    </div>
-    
-  </div> <!-- container-fluid -->
+        
+      </div> <!-- row ends -->
+  
+  
+  </div> <!-- container ends -->
+
 </template>

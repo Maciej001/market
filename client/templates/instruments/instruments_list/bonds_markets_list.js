@@ -1,8 +1,8 @@
-Template.BondsMarketsList.onRendered(function(){
+Template.bondsMarketsList.onRendered(function(){
   Session.set('addBondToMarket', false);  
 });
 
-Template.BondsMarketsList.helpers({
+Template.bondsMarketsList.helpers({
   bondsMarkets: function(){
     return BondsMarkets.find();
   },
@@ -11,7 +11,7 @@ Template.BondsMarketsList.helpers({
   }
 });
 
-Template.BondsMarketsList.events({
+Template.bondsMarketsList.events({
   'click .add-bond-market': function(){
     Session.set('addBondToMarket',true);
   }

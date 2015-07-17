@@ -1,28 +1,26 @@
-<template name="BondsMarketsList">
-  <div class="container">
+<template name="bondsMarketsList">
+
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col s12">
+        
         <h4 class="table-header">Bonds Markets</h4>
-        <a href="#"><button type="button" class="btn btn-success btn-xs add-bond-market">Add Bonds Market</button></a>
+        <a href="#">
+          <button type="button" class="btn waves-effect waves-light amber add-bond-market">Add Bonds Market</button>
+        </a>
+        
       </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-4" id="new-bond-market-form">
-        {{#if addBondToMarket}}
-          {{> NewBondMarketForm }}
-        {{/if}}
-      </div>
-    </div>
-    
-  </div>
+    </div> <!-- row ends -->
+
+      {{#if addBondToMarket}}
+        {{> newBondMarketForm }}
+      {{/if}}
 
   <table class='table all-bonds-market'>
-
     <tbody>
       {{#each bondsMarkets}}
         {{> BondsMarketsItem}}
       {{/each}}
     </tbody>
   </table>
+  
 </template>

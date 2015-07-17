@@ -1,20 +1,51 @@
-<template name="NewBondMarketForm">
-    <form class="form-horizontal">
-		
-	  <div class="form-group">
-	    <label for="bondCurveName" class="control-label">Bond Curve Name</label>
-	    <input type="curve" class="form-control" id="bondCurveName">
-	  </div>
-	  
-	  <div class="form-group">
-	    <label for="bondCurveCurr" class="control-label">Currency</label>
-	    <input type="currency" class="form-control" id="bondCurveCurr">
-	  </div>
-
+<template name="newBondMarketForm">
+	<!--<div class="row">-->
+	<!--    <form class="col s12 m6">-->
+			
+	<!--	  <div class="row">-->
+	<!--		  <div class="input-field col s12">-->
+	<!--		    <input id="bondCurveName" type="curve" class="validate">-->
+	<!--		    <label for="bondCurveName">Bond Curve Name</label>-->
+	<!--		  </div>-->
+	<!--	  </div>	-->
+		  
+	<!--	  <div class="row">-->
+	<!--		<div class="input-field col s12">-->
+	<!--		   <input id="bondCurveCurr" type="curve" class="validate">-->
+	<!--		   <label for="bondCurveCurr">Currency</label>-->
+	<!--	    </div>-->
+	<!--	  </div>	-->
+		 
+	<!--	  <div>-->
+	<!--        <button type="submit" class="btn">Save</button>-->
+	<!--        <button type="cancel" class="btn">Cancel</button>-->
+	<!--	  </div>-->
+		  
+	<!--	</form>-->
+	<!--</div>-->
+	
+  <div class="row">
+    <form class="col s12">
       
-	  <div class="form-group btns-right">
-	      <button type="submit" class="btn btn-success">Save</button>
-	      <button type="cancel" class="btn btn-default">Cancel</button>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="bondCurveName" type="text" class="validate">
+          <label for="bondCurveName">Bond Curve Name</label>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="bondCurveCurr" type="text" class="validate">
+          <label for="BondCurveCurr">Currency</label>
+        </div>
+      </div>
+      
+      <div>
+        <button type="submit" class="btn light-green waves-effect waves-light">Save</button>
+        <button type="cancel" class="btn grey waves-effect waves-light">Cancel</button>
 	  </div>
-	</form>
+      
+    </form>
+  </div>
 </template>

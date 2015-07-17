@@ -1,4 +1,4 @@
-Template.NewBondMarketForm.events({
+Template.newBondMarketForm.events({
     'submit form': function(e){
 		e.preventDefault();
 
