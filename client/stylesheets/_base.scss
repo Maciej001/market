@@ -16,3 +16,7 @@ html, body {
   display: inline-block;
 }
 
+.has-error .help-block {
+    color: $red;
+}
+

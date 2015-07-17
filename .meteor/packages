@@ -16,3 +16,5 @@ materialize:materialize
 useraccounts:materialize
 aldeed:simple-schema
 aldeed:collection2
+aldeed:autoform
+matb33:collection-hooks

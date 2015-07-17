@@ -1,4 +1,4 @@
-Template.newBondMarketForm.events({
+Template.insertBondMarketForm.events({
     'submit form': function(e){
 		e.preventDefault();
 		var market = {
@@ -15,9 +15,17 @@ Template.newBondMarketForm.events({
 		    }
 		});
 	}, 
-    'click button[type=cancel]': function(e){
+    'click .cancel': function(e){
     	e.preventDefault();
         Session.set('addBondToMarket',false);
     }
     
+});
+
+AutoForm.hooks({
+	insertBondMarketForm: {
+		onSuccess: function() {
+			Session.set('addBondToMarket',false);
+		}
+	}	
 });

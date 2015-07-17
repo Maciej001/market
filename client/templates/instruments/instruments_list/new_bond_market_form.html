@@ -1,51 +1,16 @@
-<template name="newBondMarketForm">
-	<!--<div class="row">-->
-	<!--    <form class="col s12 m6">-->
-			
-	<!--	  <div class="row">-->
-	<!--		  <div class="input-field col s12">-->
-	<!--		    <input id="bondCurveName" type="curve" class="validate">-->
-	<!--		    <label for="bondCurveName">Bond Curve Name</label>-->
-	<!--		  </div>-->
-	<!--	  </div>	-->
-		  
-	<!--	  <div class="row">-->
-	<!--		<div class="input-field col s12">-->
-	<!--		   <input id="bondCurveCurr" type="curve" class="validate">-->
-	<!--		   <label for="bondCurveCurr">Currency</label>-->
-	<!--	    </div>-->
-	<!--	  </div>	-->
-		 
-	<!--	  <div>-->
-	<!--        <button type="submit" class="btn">Save</button>-->
-	<!--        <button type="cancel" class="btn">Cancel</button>-->
-	<!--	  </div>-->
-		  
-	<!--	</form>-->
-	<!--</div>-->
-	
-  <div class="row">
-    <form class="col s12">
+<template name="insertBondMarketForm">
+  
+  {{#autoForm collection="BondsMarkets" id="insertBondMarketForm" type="insert"}}
+    <fieldset>
+      {{> afQuickFields }}
       
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="bondCurveName" type="text" class="validate">
-          <label for="bondCurveName">Bond Curve Name</label>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="bondCurveCurr" type="text" class="validate">
-          <label for="BondCurveCurr">Currency</label>
-        </div>
-      </div>
-      
-      <div>
-        <button type="submit" class="btn light-green waves-effect waves-light">Save</button>
-        <button type="cancel" class="btn grey waves-effect waves-light">Cancel</button>
-	  </div>
-      
-    </form>
-  </div>
+      <div class="buttons">
+	      <button type="submit" class="btn light-green waves-effect waves-light">Save</button>
+	      <!--<button type="button" class="btn grey waves-effect waves-light cancel">Cancel</button>-->
+	      <button type="button" class="cancel btn grey">Cancel</button>
+    	</div>
+    	
+    </fieldset>
+  {{/autoForm}}
+  
 </template>
