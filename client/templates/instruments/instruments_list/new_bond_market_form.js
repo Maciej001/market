@@ -10,6 +10,7 @@ Template.insertBondMarketForm.events({
 AutoForm.hooks({
 	insertBondMarketForm: {
 		onSuccess: function() {
+			// switches of the form template, so it's not displayed anymore.
 			Session.set('addBondToMarket',false);
 		}
 	}	

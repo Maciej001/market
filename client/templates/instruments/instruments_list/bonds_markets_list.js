@@ -8,7 +8,10 @@ Template.bondsMarketsList.helpers({
   },
   addBondToMarket: function(){
     return Session.get('addBondToMarket');
-  }
+  },
+  editMarket: function(){
+    return Session.get('editMarket');
+  },
 });
 
 Template.bondsMarketsList.events({
