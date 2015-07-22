@@ -30,6 +30,7 @@ Template.BondsMarketsItem.events({
   },
   'click .edit-market': function(){
     Session.set('editMarket', true);
-    Session.set('marketToEdit', this._id);
+    console.log(this._id);
+    Session.set('marketId', this._id); 
   }
 });

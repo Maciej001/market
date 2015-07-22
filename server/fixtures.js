@@ -1,23 +1,5 @@
 BondsMarkets.remove({});
 
-BondsMarkets.insert({
-  curve: 'HGB',
-  currency: 'HUF',
-  bonds: [] // array of bondsIds
-});
-
-BondsMarkets.insert({
-  curve: 'POLGB',
-  currency: 'PLN',
-  bonds: []
-});
-
-BondsMarkets.insert({
-  curve: 'CZGB',
-  currency: 'CZK',
-  bonds: []
-});
-
 Curves.insert({
   curve: 'HUF_BUBOR_3M',
   currency: 'HUF', 

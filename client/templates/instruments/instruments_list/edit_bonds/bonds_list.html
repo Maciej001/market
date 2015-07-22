@@ -7,4 +7,8 @@
     {{#if addBond}}
         {{> addBondForm }}
     {{/if}}
+    
+    {{#each bondCollection }}
+        {{> bondListItem }}
+    {{/each}}
 </template>

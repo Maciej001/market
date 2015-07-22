@@ -4,11 +4,15 @@ Template.bondsList.onRendered(function(){
 
 Template.bondsList.helpers({
     marketToEditName: function(){
-        var market = BondsMarkets.findOne(Session.get('marketToEdit'));
+        var market = BondsMarkets.findOne(Session.get('marketId'));
         return market.curve;
   },
   addBond: function(){
       return Session.get("addBond");
+  }, 
+  bondCollection: function(){
+      // returns Bonds belonging to BondsMarkets
+    return Bonds.find({marketId: Session.get('marketId')});
   }
 });
 
