@@ -10,6 +10,17 @@ Template.bondsList.helpers({
   addBond: function(){
       return Session.get("addBond");
   }, 
+  hasBonds: function(){
+    var marketId = Session.get('marketId');
+    
+    if (Bonds.find({marketId: marketId}).count() === 0) {
+        return false;
+    } 
+    else {
+        return true;
+    }
+    
+  },
   bondCollection: function(){
       // returns Bonds belonging to BondsMarkets
     return Bonds.find({marketId: Session.get('marketId')});
