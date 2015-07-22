@@ -3,6 +3,8 @@ var addMarketIdHook = {
         insert: function(doc){
             doc.marketId = Session.get("marketId");
             return doc;
+            doc.currency = doc.currency.toUpperCase()
+            
         }
     }
 };

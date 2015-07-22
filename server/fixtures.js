@@ -1,5 +1,3 @@
-BondsMarkets.remove({});
-
 Curves.insert({
   curve: 'HUF_BUBOR_3M',
   currency: 'HUF', 

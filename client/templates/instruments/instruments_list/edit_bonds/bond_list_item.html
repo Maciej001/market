@@ -1,3 +1,20 @@
 <template name="bondListItem">
-    Name: {{shortName}}
+    <tr>
+        <td>{{isin}}</td>
+        <td>{{currency}}</td>
+        <td>{{shortName}}</td>
+        <td>{{name}}</td>
+        <td>{{coupon}}</td>
+        <td>{{bondMaturity}}</td>
+        <td>{{outstanding}}</td>
+        <td>
+            <button type="button" class="btn btn-small red lighten-2 delete-bond">
+                <i class="material-icons">delete</i>
+            </button>
+        
+            <button type="button" class="btn btn-small green lighten-2 edit-bond">
+                <i class="material-icons">add</i>
+            </button>
+        </td>
+    </tr>
 </template> 

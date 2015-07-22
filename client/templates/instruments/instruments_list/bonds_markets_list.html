@@ -10,10 +10,14 @@
         
       </div>
     </div> <!-- row ends -->
-
-    {{#if addBondToMarket}}
-      {{> insertBondMarketForm }}
-    {{/if}}
+    
+    <div class="row">
+      <div class="col">
+        {{#if addBondToMarket}}
+          {{> insertBondMarketForm }}
+        {{/if}}
+      </div>
+    </div>
 
   <table class='table all-bonds-market'>
     <tbody>

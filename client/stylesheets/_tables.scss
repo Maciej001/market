@@ -26,9 +26,7 @@ td.bucket-price {
     padding: 5px 10px;
     text-align: right;
 }
-.all-bonds-market {
-    margin-top: 20px;
-}
+
 .all-bonds-market tr {
   border-bottom: 1px solid $light-blue;
   
@@ -42,5 +40,18 @@ td.bucket-price {
       outline: none;
   }
   
+
+}
+
+#fullBondList {
+    td, th {
+            font-size: 0.9rem;
+        }
+    th {
+        font-weight: bold;
+    }
+    i {
+        color: white;
+    }
 
 }

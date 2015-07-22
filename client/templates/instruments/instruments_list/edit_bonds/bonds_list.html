@@ -4,11 +4,32 @@
       <button type="button" class="btn waves-effect waves-light amber add-bond">Add Bond</button>
     </a>
     
-    {{#if addBond}}
-        {{> addBondForm }}
-    {{/if}}
+    <div class="row">
+        <div class="col s6">
+            {{#if addBond}}
+                {{> addBondForm }}
+            {{/if}}
+        </div>
+    </div>
     
-    {{#each bondCollection }}
-        {{> bondListItem }}
-    {{/each}}
+    <table class="striped" id="fullBondList">
+        <thead>
+          <tr>
+              <th data-field="isin">ISIN</th>
+              <th data-field="currency">Currency</th>
+              <th data-field="shortName">Short Name</th>
+              <th data-field="Name">Name</th>
+              <th data-field="Coupon">Coupon</th>
+              <th data-field="Maturity">Maturity</th>
+              <th data-field="Outstanding">Outstanding</th>
+              <th></th>
+          </tr>
+        </thead>
+        
+        <tbody>
+            {{#each bondCollection }}
+                {{> bondListItem }}
+            {{/each}}
+        </tbody>
+    </table>
 </template>
