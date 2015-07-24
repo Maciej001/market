@@ -3,6 +3,9 @@ Template.addBondForm.helpers({
         return { 
                     bondsMarketsId: Session.get('marketToEditId') 
                 };
+    },
+    marketCurrency: function(){
+        return Session.get('marketCurrency');
     }
 });
 

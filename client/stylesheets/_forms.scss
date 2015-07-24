@@ -7,8 +7,14 @@
 }
 
 .bond-list fieldset {
-    border-bottom: none;
-    &:last-child {
-        border-bottom: 1px solid #c0c0c0;
+    border: none;
+    padding: 0 .625em;
+    
+    td {
+        padding: 5px;
+    }
+    
+    input {
+        height: 2rem;
     }
 }
