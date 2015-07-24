@@ -1,20 +1,24 @@
 <template name="bondListItem">
-    <tr>
-        <td>{{isin}}</td>
-        <td>{{currency}}</td>
-        <td>{{shortName}}</td>
-        <td>{{name}}</td>
-        <td>{{coupon}}</td>
-        <td>{{bondMaturity}}</td>
-        <td>{{outstanding}}</td>
-        <td>
-            <button type="button" class="btn btn-small red lighten-2 delete-bond">
-                <i class="material-icons">delete</i>
-            </button>
-        
-            <button type="button" class="btn btn-small green lighten-2 edit-bond">
-                <i class="material-icons">add</i>
-            </button>
-        </td>
-    </tr>
-</template> 
+
+    {{#autoForm collection="Bonds" id=this._id type="update" doc=this autosave=true}}
+        <fieldset>
+            <tr>
+                
+            <td>{{> afQuickField name='isin'}}</td>
+            <td>{{> afQuickField name='currency'}}</td>
+            <td>{{> afQuickField name='shortName'}}</td>
+            <td>{{> afQuickField name='name'}}</td>
+            <td>{{> afQuickField name='coupon'}}</td>
+            <td>{{> afQuickField name='maturity'}}</td>
+            <td>{{> afQuickField name='outstanding'}}</td>
+            <td>
+                <button type="button" class="btn btn-small red lighten-2 delete-bond">
+                    <i class="material-icons">delete</i>
+                </button>
+            </td>
+                
+            </tr>
+        </fieldset>
+    {{/autoForm}}
+
+</template>

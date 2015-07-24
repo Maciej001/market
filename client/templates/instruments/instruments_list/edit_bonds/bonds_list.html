@@ -13,25 +13,18 @@
     </div>
     
     {{#if hasBonds}}
-        <table class="striped" id="fullBondList">
-            <thead>
-              <tr>
-                  <th data-field="isin">ISIN</th>
-                  <th data-field="currency">Currency</th>
-                  <th data-field="shortName">Short Name</th>
-                  <th data-field="Name">Name</th>
-                  <th data-field="Coupon">Coupon</th>
-                  <th data-field="Maturity">Maturity</th>
-                  <th data-field="Outstanding">Outstanding</th>
-                  <th></th>
-              </tr>
-            </thead>
-            
-            <tbody>
-                {{#each bondCollection }}
-                    {{> bondListItem }}
-                {{/each}}
-            </tbody>
-        </table>
+    
+        {{#if Template.subscriptionsReady}}
+            <div class="row bond-list">
+                <div class="col">
+                    {{#each bonds }}
+                        {{> bondListItem }}
+                    {{/each}}
+                </div>
+            </div>
+        {{else}}
+            {{> spinner}}
+        {{/if}}
+        
     {{/if}}
 </template>

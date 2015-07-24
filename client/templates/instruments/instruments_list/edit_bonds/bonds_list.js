@@ -1,9 +1,29 @@
-Template.bondsList.onRendered(function(){
-   Session.set("addBond", false); 
+
+// INITIALIZATION
+Template.bondsList.onCreated(function(){
+    var instance = this;
+    
+    // addBonds - decides if template shows form to add bonds
+    Session.set("addBond", false);
+    
+    // Subscribe 
+    instance.autorun(function(){
+        var subscription = instance.subscribe('bonds', { marketId: Session.get('marketId') }); 
+    });
+    
+    // Coursor - will be reactive because Session is reactive
+    instance.bonds = function() { 
+        return Bonds.find({ marketId: Session.get('marketId')}, { sort: { maturity: 1 } });
+    };
 });
 
+
+// HELPERS
 Template.bondsList.helpers({
-    marketToEditName: function(){
+  bonds: function(){
+    return Template.instance().bonds();  
+  },
+  marketToEditName: function(){
         var market = BondsMarkets.findOne(Session.get('marketId'));
         return market.curve;
   },
@@ -19,14 +39,11 @@ Template.bondsList.helpers({
     else {
         return true;
     }
-    
   },
-  bondCollection: function(){
-      // returns Bonds belonging to BondsMarkets
-    return Bonds.find({marketId: Session.get('marketId')});
-  }
 });
 
+
+// EVENTS
 Template.bondsList.events({
     'click .add-bond': function(){
         Session.set("addBond", true);
