@@ -1,15 +1,17 @@
 Template.addBondForm.onCreated(function(){
     
-    var options = {
-        coupon: 0,
-        maturity: new Date(2025, 6, 25),
-    };
-    
     var bondYield;
     var price = 102.00;
     
+    var bond = {
+        maturity: new Date(2025, 6, 25),
+        coupon:   3.25,
+        bYield:   3.1,
+        coupon_accuracy: 3 // decimal places for coupon accuracy assuming 100 nominal
+    }
     
-    console.log('price ', Fin.bond_price(options.maturity, 3.25, 2.85, 3));
+    
+    console.log('price ', Fin.bond_price(DT.tPlusDate(DT.today(), 5), bond));
 
 });
 
