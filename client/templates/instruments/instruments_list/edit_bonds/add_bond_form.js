@@ -11,7 +11,9 @@ Template.addBondForm.onCreated(function(){
     
     
     console.log('price ', Fin.bond_price(bond, 3.10, DT.tPlusDate(DT.today(), 5)));
-    Fin.bond_yield(bond, 103, 1, 3, DT.spot() );
+    
+    
+    console.log(Fin.bond_yield(bond, 103, 1, 3, DT.spot() ));
 
 });
 
