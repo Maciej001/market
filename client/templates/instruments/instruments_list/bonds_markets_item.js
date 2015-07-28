@@ -32,5 +32,6 @@ Template.BondsMarketsItem.events({
     Session.set('editMarket', true);
     Session.set('marketId', this._id);
     Session.set('marketCurrency', this.currency);
+    Session.set('marketCurve', this.curve);
   }
 });

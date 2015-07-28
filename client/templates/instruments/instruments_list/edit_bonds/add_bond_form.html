@@ -8,7 +8,9 @@
         {{> afQuickField name='shortName'}}
         {{> afQuickField name='name'}}
         {{> afQuickField name='coupon'}}
-        {{> afQuickField name='maturity'}}
+        {{> afQuickField name='firstCoupon' options=firstCouponOptions}}
+        <!--{{> afQuickField name='firstCoupon' options="allowed"}}-->
+        {{> afQuickField name='maturity' value=todaysDate}}
         {{> afQuickField name='outstanding'}}
         
         <div class="buttons">

@@ -28,8 +28,7 @@ Template.bondsList.helpers({
   },
   
   marketToEditName: function(){
-        var market = BondsMarkets.findOne(Template.instance().marketId);
-        return market.curve;
+        return Session.get('marketCurve');
   },
 
   addBond: function(){

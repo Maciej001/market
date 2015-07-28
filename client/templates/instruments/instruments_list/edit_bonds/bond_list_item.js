@@ -12,8 +12,6 @@ Template.bondListItem.helpers({
     bond: function(){
         return this;
     },
-    
-    
 });
 
 Template.bondListItem.events({
