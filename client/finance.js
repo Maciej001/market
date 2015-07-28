@@ -29,15 +29,14 @@ Meteor.startup(function(){
         var full_years = function(maturity) {
             var today = new Date(),
                 bondMaturity = new Date(maturity),
-                counter = 0;
+                years=0;
             
             while (bondMaturity > today) {
                 bondMaturity.setFullYear( bondMaturity.getFullYear() - 1);
-                counter += 1;
-                console.log('counter in full_years ',  counter);
+                years += 1;
             }
             
-            return counter - 1;
+            return years - 1;
         }
         
         // _________________________________________________________________________________
@@ -100,16 +99,12 @@ Meteor.startup(function(){
         // ______________________________________________________________________________________
         var bond_yield = function(bond, price, min_yield, max_yield, vd) {
                 
-            
             var low_price =     bond_price(bond, max_yield, vd),
                 high_price =    bond_price(bond, min_yield, vd),
                 accuracy =      Math.pow(10, bond.couponAccuracy),
                 mid_yield,
                 mid_price = 1;
-                
-                console.log('accuracy ' + accuracy);
 
-            var counter = 0;
             while (Math.round(Math.abs(low_price - high_price)*accuracy) !== 0) {
                 mid_yield = (min_yield + max_yield)/2;
                 mid_price = bond_price(bond, mid_yield, vd);
