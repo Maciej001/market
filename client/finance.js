@@ -5,6 +5,10 @@ Meteor.startup(function(){
    // To call function: Fin.functionName(args)
    //
    // eg. Fin.bond_price(bond, Y, vd)
+   //
+   //  Dates used for calculations should have following format:
+   //  new Date(year, month, day, 0, 0, 0, 0) to avoid any problems comming from 
+   //  deducting not only date but also time.
    // ____________________________________________________________________________
    
    Fin = (function(){
@@ -43,7 +47,7 @@ Meteor.startup(function(){
         // bond: object {
         //          maturity: bond's maturity in Date format
         //          coupon:   bond's coupon, eg. 3.25 (3.25%)
-        //          coupon_accuracy: number of decimal places for accrued interest assuming 
+        //          couponAccuracy: number of decimal places for accrued interest assuming 
         //                           100 bond's nominal, eg. 3 for POLGBs
         //       }
         // Y - bonds yield, eg. 1.97 (1.97%)
@@ -56,7 +60,7 @@ Meteor.startup(function(){
             var y =         Y/100, // yield from 3 to 0.03
                 m =         bond.maturity,
                 c =         bond.coupon,
-                accuracy = Math.pow(10, bond.coupon_accuracy);
+                accuracy = Math.pow(10, bond.couponAccuracy);
                 
             var one_day = 24*60*60*1000,
                 full_years_to_maturity = full_years(m),
@@ -84,7 +88,7 @@ Meteor.startup(function(){
         // bond: object {
         //          maturity: bond's maturity in Date format
         //          coupon:   bond's coupon, eg. 3.25 (3.25%)
-        //          coupon_accuracy: number of decimal places for accrued interest assuming 
+        //          couponAccuracy: number of decimal places for accrued interest assuming 
         //                           100 bond's nominal, eg. 3 for POLGBs
         //       }
         // price: bond's price, eg. 103.30
@@ -101,7 +105,9 @@ Meteor.startup(function(){
                 high_price =    bond_price(bond, min_yield, vd),
                 accuracy =      Math.pow(10, bond.couponAccuracy),
                 mid_yield,
-                mid_price;
+                mid_price = 1;
+                
+                console.log('accuracy ' + accuracy);
 
             var counter = 0;
             while (Math.round(Math.abs(low_price - high_price)*accuracy) !== 0) {
@@ -116,8 +122,6 @@ Meteor.startup(function(){
                     max_yield = mid_yield;
                     high_price = bond_price(bond, min_yield, vd);
                 }
-                
-                console.log('inside bond yield with counter at ' + counter);
             }
             
             return mid_yield;

@@ -6,7 +6,7 @@ Template.addBondForm.onCreated(function(){
     var bond = {
         maturity: new Date(2025, 6, 25),
         coupon:   3.25,
-        coupon_accuracy: 3 // decimal places for coupon accuracy assuming 100 nominal
+        couponAccuracy: 3 // decimal places for coupon accuracy assuming 100 nominal
     }
     
     
