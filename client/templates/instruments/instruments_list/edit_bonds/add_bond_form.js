@@ -6,12 +6,12 @@ Template.addBondForm.onCreated(function(){
     var bond = {
         maturity: new Date(2025, 6, 25),
         coupon:   3.25,
-        bYield:   3.1,
         coupon_accuracy: 3 // decimal places for coupon accuracy assuming 100 nominal
     }
     
     
-    console.log('price ', Fin.bond_price(DT.tPlusDate(DT.today(), 5), bond));
+    console.log('price ', Fin.bond_price(bond, 3.10, DT.tPlusDate(DT.today(), 5)));
+    Fin.bond_yield(bond, 103, 1, 3, DT.spot() );
 
 });
 

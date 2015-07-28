@@ -22,8 +22,8 @@ Meteor.startup(function(){
         // bYield - yield
         // maturity, coupon
         // coupon_accuracy - to how many places accrued interest are rounded
-        var bond_price = function(vd, bond) {
-            var y =         bond.bYield/100, // yield from 3 to 0.03
+        var bond_price = function(bond, Y, vd) {
+            var y =         Y/100, // yield from 3 to 0.03
                 m =         bond.maturity,
                 c =         bond.coupon,
                 coupon_accuracy = bond.coupon_accuracy;
@@ -48,11 +48,44 @@ Meteor.startup(function(){
             return price;
         }
         
+        
+        // Bond yield is calculated to accrued_interest accuracy
+        // 
+        var bond_yield = function(bond, price, min_yield, max_yield, vd) {
+                
+            
+            var low_price =     bond_price(bond, max_yield, vd),
+                high_price =    bond_price(bond, min_yield, vd),
+                accuracy =      bond.couponAccuracy,
+                mid_yield,
+                mid_price;
+                
+
+            while (Math.round(Math.abs(low_price - high_price)*1000) !== 0) {
+                mid_yield = (min_yield + max_yield)/2;
+                mid_price = bond_price(bond, mid_yield, vd);
+                
+                if (mid_price > price) {
+                    min_yield = mid_yield;
+                    low_price = bond_price(bond, max_yield, vd);
+                } 
+                else if (mid_price < price) {
+                    max_yield = mid_yield;
+                    high_price = bond_price(bond, min_yield, vd);
+                }
+            }
+            
+            return mid_yield;
+        }
+        
         // CREATE API
         
         finAPI = {
             full_years: function(maturity){ return full_years(maturity); },
-            bond_price: function(vd, bond){ return bond_price(vd, bond); }
+            bond_price: function(bond, Y, vd){ return bond_price(bond, Y, vd); },
+            bond_yield: function(bond, price, min_yield, max_yield, vd){ 
+                return bond_yield(bond, price, min_yield, max_yield, vd);  
+            }
         }
        
        return finAPI;
