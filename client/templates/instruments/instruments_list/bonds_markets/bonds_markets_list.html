@@ -5,7 +5,7 @@
     <button type="button" class="btn waves-effect waves-light amber add-bond-market">New Bonds Market</button>
   </a>
   
-  {{#if addBondToMarket}}
+  {{#if addBondsMarket}}
     {{> insertBondMarketForm }}
   {{/if}}
   
@@ -15,6 +15,7 @@
         {{> BondsMarketsItem}}
       {{/each}}
     </tbody>
+  
   </table>
   
 </template>

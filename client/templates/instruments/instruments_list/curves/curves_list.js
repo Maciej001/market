@@ -26,7 +26,24 @@ Template.curvesList.events({
         Session.set('editCurve', false);
         
         // Close Add BondsMarkets form
-        Sessioni.set('addBondsMarket', false);
+        Session.set('addBondsMarket', false);
+
+        // Close Bonds List
+        Session.set('listBonds', false);
+        
+        // Close Add Bond Form
+        Session.set('addBond', false);
+    },
+    'click .edit-curve': function() {
+        
+        // Open Edit Curve Form
+        Session.set("editCurve", true);
+        
+        // Close Edit Curve form
+        Session.set('addCurve', false);
+        
+        // Close Add BondsMarkets form
+        Session.set('addBondsMarket', false);
 
         // Close Bonds List
         Session.set('listBonds', false);
@@ -34,5 +51,4 @@ Template.curvesList.events({
         // Close Add Bond Form
         Session.set('addBond', false);
     }
-    
 })
