@@ -7,7 +7,8 @@ Template.newCurveForm.events({
         
         // Reset form validations
         AutoForm.resetForm('newCurveForm'); 
-    }
+    },
+    
 });
 
 AutoForm.hooks({

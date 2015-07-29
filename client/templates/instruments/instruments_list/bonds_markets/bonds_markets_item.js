@@ -1,5 +1,5 @@
 Template.BondsMarketsItem.onRendered(function(){
-  Session.set("editMarket", false);
+  
 });
 
 Template.BondsMarketsItem.helpers({
@@ -7,9 +7,6 @@ Template.BondsMarketsItem.helpers({
 });
 
 Template.BondsMarketsItem.events({
-  'click .delete-market': function(){
-    BondsMarkets.remove(this._id);
-  },
   'keypress input': function(e){
     var event = e;
     var keyCode = e.keyCode || e.which; 
@@ -29,9 +26,16 @@ Template.BondsMarketsItem.events({
     }
   },
   'click .edit-market': function(){
-    Session.set('editMarket', true);
+    // Open Bonds List Template for given market
+    Session.set('listBonds', true);
+    
+    // Params for Bonds List template
     Session.set('marketId', this._id);
     Session.set('marketCurrency', this.currency);
     Session.set('marketCurve', this.curve);
+    
+    // Close Add/Edit Curve forms
+    Session.set('addCurve', false);
+    Session.set('editCurve', false);
   }
 });

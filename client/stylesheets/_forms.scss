@@ -2,8 +2,15 @@
     margin-top: 20px;
 }
 
-#insertBondMarketForm {
+#insertBondMarketForm, #newCurveForm {
     margin: 20px 0;
+    h5 {
+        font-size: 1.2rem;
+        padding: 10px;
+        margin: 20px 0;
+        color: white;
+        opacity: .7;
+    }
 }
 
 .bond-list fieldset {

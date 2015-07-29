@@ -9,9 +9,7 @@ tr.curve-data-row {
     }
 }
 
-.curve-name-header {
-    margin-bottom: 20px;
-}
+
 td.bucket-name {
     max-width: 100px;
     min-width: 100px;
@@ -27,7 +25,11 @@ td.bucket-price {
     text-align: right;
 }
 
-.all-bonds-market tr {
+.all-bonds-market, .all-curves {
+    margin-top: 20px;    
+}
+
+.all-bonds-market tr, .all-curves tr {
   border-bottom: 1px solid $light-blue;
   
   td {
@@ -39,9 +41,8 @@ td.bucket-price {
       border: none;
       outline: none;
   }
-  
-
 }
+
 
 #fullBondList {
     td, th {

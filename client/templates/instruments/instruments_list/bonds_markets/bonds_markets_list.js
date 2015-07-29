@@ -7,13 +7,13 @@ Template.bondsMarketsList.helpers({
     return BondsMarkets.find();
   },
   addBondToMarket: function(){
-    return Session.get('addBondToMarket');
+    return Session.get('addBondsMarket');
   }
 });
 
 Template.bondsMarketsList.events({
   'click .add-bond-market': function(){
-    Session.set('addBondToMarket',true);
+    Session.set('addBondsMarket',true);
   }
 });
 
