@@ -1,0 +1,20 @@
+<template name="bondsMarketsList">
+
+  <h5 class="table-header">Bonds Markets</h5>
+  <a href="#">
+    <button type="button" class="btn waves-effect waves-light amber add-bond-market">New Bonds Market</button>
+  </a>
+  
+  {{#if addBondToMarket}}
+    {{> insertBondMarketForm }}
+  {{/if}}
+  
+  <table class='table all-bonds-market'>
+    <tbody>
+      {{#each bondsMarkets}}
+        {{> BondsMarketsItem}}
+      {{/each}}
+    </tbody>
+  </table>
+  
+</template>

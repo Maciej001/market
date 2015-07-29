@@ -1,0 +1,13 @@
+<template name="newCurveForm">
+    
+    {{#autoForm collection="Curves" id="newCurveForm" type="insert"}}
+        <fieldset>
+            {{> afQuickFields }}
+            <div class="buttons">
+                <button type="submit" class="btn light-green waves-effect waves-light">Save</button>
+                <button type="button" class="btn grey waves-effect waves-light cancel">Cancel</button>
+            </div>
+        </fieldset>
+    {{/autoForm}}
+  
+</template>

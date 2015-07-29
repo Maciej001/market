@@ -1,0 +1,18 @@
+<template name="curvesList">
+  <h5 class="table-header">Curves</h5>
+  <a href="#">
+    <button type="button" class="btn waves-effect waves-light amber add-curve">New Curve</button>
+  </a>
+  
+  {{#if addCurve}}
+    {{> newCurveForm }}
+  {{/if}}
+  
+  <table class='table all-bonds-market'>
+    <tbody>
+      {{#each marketCurves}}
+        {{> curveItem}}
+      {{/each}}
+    </tbody>
+  </table>
+</template>

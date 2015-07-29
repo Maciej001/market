@@ -1,0 +1,24 @@
+<template name="addBondForm">
+    
+    {{#autoForm collection="Bonds" id="addBondForm" type="insert"}}
+      <fieldset>
+      
+        {{> afQuickField name='isin'}}
+        {{> afQuickField name='currency' value=marketCurrency}}
+        {{> afQuickField name='shortName'}}
+        {{> afQuickField name='name'}}
+        {{> afQuickField name='coupon'}}
+        {{> afQuickField name='couponAccuracy'}}
+        {{> afQuickField name='firstCoupon' options=firstCouponOptions}}
+        <!--{{> afQuickField name='firstCoupon' options="allowed"}}-->
+        {{> afQuickField name='maturity' value=todaysDate}}
+        {{> afQuickField name='outstanding'}}
+        
+        <div class="buttons">
+  	      <button type="submit" class="btn light-green waves-effect waves-light">Save</button>
+  	      <button type="button" class="cancel btn grey">Cancel</button>
+    	  </div>  
+      
+      </fieldset>
+    {{/autoForm}}
+</template>

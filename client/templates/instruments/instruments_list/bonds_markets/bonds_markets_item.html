@@ -1,0 +1,30 @@
+<template name="BondsMarketsItem">
+    <form>
+        <tr>	
+    		<!-- Name -->
+        	<td>
+              <input type="curve" id="inputPrice" value="{{ curve }}">
+            </td>
+        
+        		<!-- Price -->
+        	<td>
+              <input type="currency" id="inputPrice" value="{{ currency }}">
+            </td>
+            
+        
+        	<!-- Actions -->
+        	<!--<td>-->
+         <!--     <button type="button" class="btn-floating red lighten-2 delete-market">-->
+         <!--       <i class="material-icons small">delete</i>-->
+         <!--     </button>-->
+        	<!--</td>-->
+        	<td>
+              <button type="button" class="btn-floating green lighten-2 edit-market">
+                <i class="material-icons small">add</i>
+              </button>
+        	</td>
+        </tr>
+    </form>
+  
+</template>
+

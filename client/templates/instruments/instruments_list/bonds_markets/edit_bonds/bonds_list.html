@@ -1,0 +1,30 @@
+<template name="bondsList">
+    <h5 class="table-header">Edit {{marketToEditName}}s</h5>
+    <a href="#">
+      <button type="button" class="btn waves-effect waves-light amber add-bond">Add Bond</button>
+    </a>
+    
+    <div class="row">
+        <div class="col s6">
+            {{#if addBond}}
+                {{> addBondForm }}
+            {{/if}}
+        </div>
+    </div>
+    
+    {{#if hasBonds}}
+    
+        {{#if Template.subscriptionsReady}}
+            <div class="row bond-list">
+                <div class="col s12">
+                    {{#each bonds }}
+                        {{> bondListItem }}
+                    {{/each}}
+                </div>
+            </div>
+        {{else}}
+            {{> spinner}}
+        {{/if}}
+        
+    {{/if}}
+</template>
