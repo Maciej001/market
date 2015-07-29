@@ -13,7 +13,7 @@ Meteor.startup(function(){
    
    Fin = (function(){
        
-       finAPI = {};
+       var finAPI = {};
 
         // ________________________________________________________________________        
         // function full_years(maturity)
@@ -37,7 +37,7 @@ Meteor.startup(function(){
             }
             
             return years - 1;
-        }
+        };
         
         // _________________________________________________________________________________
         // function bond_price(bond, Y, vd)
@@ -78,7 +78,7 @@ Meteor.startup(function(){
             var price = (dsc_coupons + c + dsc_capital)/(Math.pow(1+y, days_to_coupon/base)) - accrued_interest;
             
             return price;
-        }
+        };
         
         // _______________________________________________________________________________________
         // function bond_yield(bond, price, min_yield, max_yield, vd)
@@ -120,7 +120,7 @@ Meteor.startup(function(){
             }
             
             return mid_yield;
-        }
+        };
         
         // CREATE API
         
@@ -130,7 +130,7 @@ Meteor.startup(function(){
             bond_yield: function(bond, price, min_yield, max_yield, vd){ 
                 return bond_yield(bond, price, min_yield, max_yield, vd);  
             }
-        }
+        };
        
        return finAPI;
        
