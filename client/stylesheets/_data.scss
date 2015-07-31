@@ -1,0 +1,19 @@
+.data-actions {
+    margin: 20px 0;
+    .btn span {
+        color: white;
+    }
+    
+    button {
+        margin-left: 20px;
+    }
+}
+.material-icons.file-icon {
+    margin-top: -5px;
+    color: $light-grey;
+    font-size: 4rem;
+}
+
+.non-visible {
+    opacity: 0;
+}

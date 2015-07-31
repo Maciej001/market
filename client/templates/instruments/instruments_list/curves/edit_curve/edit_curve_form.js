@@ -10,11 +10,9 @@ Template.editCurveForm.helpers({
 Template.editCurveForm.events({
     'click .cancel': function(e){
     	e.preventDefault();
-    	
-    	// Close form
+    
+        // Close and reset edit form
         Session.set('editCurve', false); 
-        
-        // Reset form validations
         AutoForm.resetForm('editCurveForm'); 
     },
     
