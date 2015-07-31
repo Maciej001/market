@@ -1,0 +1,26 @@
+<template name="editCurveForm">
+    
+    {{#autoForm collection="Curves" doc=thisCurve id="editCurveForm" type="update"}}
+        <fieldset>
+            {{> afQuickField name='name'}}
+            <h5 class="light-green center-align">Leg 1</h5>
+            {{> afQuickField name='l1Currency'}}
+            {{> afQuickField name='l1Type' options="allowed"}}
+            {{> afQuickField name='l1Index'}}
+            {{> afQuickField name='l1PaymentFrequency' options="allowed"}}
+            {{> afQuickField name='l1DayCount' options="allowed"}}
+            
+            <h5 class="light-green center-align">Leg 2</h5>
+            {{> afQuickField name='l2Currency'}}
+            {{> afQuickField name='l2Type' options="allowed"}}
+            {{> afQuickField name='l2Index'}}
+            {{> afQuickField name='l2PaymentFrequency' options="allowed"}}
+            {{> afQuickField name='l2DayCount' options="allowed"}}
+            <div class="buttons">
+                <button type="submit" class="btn light-green waves-effect waves-light">Save</button>
+                <button type="button" class="btn grey waves-effect waves-light cancel">Cancel</button>
+            </div>
+        </fieldset>
+    {{/autoForm}}
+  
+</template>

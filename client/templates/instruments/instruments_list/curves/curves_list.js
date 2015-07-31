@@ -1,7 +1,7 @@
 
 // INITIALIZE
 Template.curvesList.onCreated(function(){
-   Session.set("addCurve", false); 
+   
 });
 
 
@@ -12,6 +12,9 @@ Template.curvesList.helpers({
    },
    addCurve: function(){
        return Session.get("addCurve");
+   },
+   editCurve: function(){
+       return Session.get('editCurve');
    }
 });
 

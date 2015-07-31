@@ -30,7 +30,7 @@ td.bucket-price {
 }
 
 .all-bonds-market tr, .all-curves tr {
-  border-bottom: 1px solid $light-blue;
+  border-bottom: 1px solid $light-grey;
   
   td {
       padding: 5px 10px;
@@ -46,8 +46,8 @@ td.bucket-price {
 
 #fullBondList {
     td, th {
-            font-size: 0.9rem;
-        }
+        font-size: 0.9rem;
+    }
     th {
         font-weight: bold;
     }

@@ -1,3 +1,5 @@
+
+// EVENTS
 Template.curveItem.events({
     'click .edit-curve': function(){
         
@@ -12,6 +14,7 @@ Template.curveItem.events({
         
         // Close Edit Curve Form
         Session.set('editCurve', false);
-        
+
+        Session.set('curveId', this._id);        
     }
-})
+});

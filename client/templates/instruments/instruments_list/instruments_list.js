@@ -12,6 +12,9 @@ Template.instrumentsList.onCreated(function(){
     
     // Add Curve form
     Session.set('addCurve', false);
+    
+    // Edit Curve form
+    Session.set('editCurve', false);
 });
 
 // HELPERS

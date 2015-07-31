@@ -4,15 +4,19 @@
     <button type="button" class="btn waves-effect waves-light amber add-curve">New Curve</button>
   </a>
   
-  {{#if addCurve}}
+  {{#if addCurve }}
     {{> newCurveForm }}
+  {{/if}}
+  
+  {{#if editCurve }}
+    {{> editCurveForm }}
   {{/if}}
   
   <table class='table all-curves'>
     <tbody>
-      {{#each marketCurves}}
-        {{> curveItem}}
-      {{/each}}
+      {{#each marketCurves }}
+        {{> curveItem }}
+      {{/each }}
     </tbody>
   </table>
 </template>
