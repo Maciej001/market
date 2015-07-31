@@ -1,11 +1,9 @@
 // HELPERS 
-Template.curveItem.helpers({
+Template.editCurveForm.helpers({
     thisCurve: function(){
-        var curve = Curves.findOne({ _id: Session.get('curveId') });
-        console.log('curve ' + curve);
-        return curve;
+        return Curves.findOne({ _id: Session.get('curveId') });
     }
-})
+});
 
 
 // EVENTS

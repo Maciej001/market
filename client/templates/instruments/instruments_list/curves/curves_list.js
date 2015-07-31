@@ -42,6 +42,8 @@ Template.curvesList.events({
         // Open Edit Curve Form
         Session.set("editCurve", true);
         
+        Session.set("curveId", this._id);
+        
         // Close Edit Curve form
         Session.set('addCurve', false);
         
